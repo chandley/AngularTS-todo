@@ -1,0 +1,56 @@
+{
+  "name": "AtsToDo",
+  "main": "index.js",
+  "version": "1.0.0",
+  "authors": [
+    "Mark Rendle <mark@markrendle.net>"
+  ],
+  "description": "AngularJS and TypeScript learning project",
+  "keywords": [
+    "angularjs",
+    "typescript"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootswatch-dist": "flatly",
+    "angular": "~1.4.5",
+    "angular-bootstrap": "~0.13.1",
+    "angular-mocks": "~1.4.5",
+    "ui-router": "~0.2.15",
+    "fontawesome": "~4.3.0",
+    "moment": "~2.10.6",
+    "angular-ui-select": "~0.12.1"
+  },
+  "overrides": {
+    "bootswatch-dist": {
+      "normalize": {
+        "fonts": [
+          "*.eot",
+          "*.svg",
+          "*.ttf",
+          "*.woff",
+          "*.woff2"
+        ]
+      }
+    },
+    "fontawesome": {
+      "normalize": {
+        "fonts": [
+          "*.otf",
+          "*.eot",
+          "*.svg",
+          "*.ttf",
+          "*.woff",
+          "*.woff2"
+        ]
+      }
+    }
+  }
+}

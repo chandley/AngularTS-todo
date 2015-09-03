@@ -1,0 +1,7 @@
+body {
+    padding-top: 60px;
+}
+
+.done {
+    text-decoration: line-through;
+}
