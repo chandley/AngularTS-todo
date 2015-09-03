@@ -1,0 +1,13 @@
+
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Here is your To Do list</h3>
+        </div>
+    </div>
+
+    <div class="row" ng-repeat="todo in listCtrl.todos">
+        <div class="col-md-8">
+            <p>{{todo.text}}</p>
+        </div>
+    </div>
+

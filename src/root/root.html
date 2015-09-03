@@ -1,20 +1,25 @@
+<!-- "container" is the base layout class for Bootstrap -->
 <div class="container">
-    <h1>ToDos...</h1>
+    <!-- Bootstrap grids are divided into "row"s... -->
     <div class="row">
-        <div class=""col-md-6">
-          <p>Weclome to the ToDos application</p>
-          <p>View your ToDos list</p>
+
+        <!-- ... and columns, which are sized as a ratio of 12 -->
+        <div class="col-md-6">
+            <div ui-view>
+                <p>Welcome to the ToDos application.</p>
+                <p><a href="#/todos">View your ToDo list....</a></p>
+            </div>
         </div>
+
         <div class="col-md-6">
             <div class="panel panel-info">
                 <div class="panel-heading">Messages</div>
                 <div class="panel-body">
                     <ul>
-                        <li ng-repeat"message in rootCtrl.messages">
+                        <li ng-repeat="message in rootCtrl.messages">
                             {{message}}
                         </li>
                     </ul>
-                    <p>{{rootCtrl.messsages[0]}}</p>
                 </div>
             </div>
         </div>

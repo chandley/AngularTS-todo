@@ -2,16 +2,28 @@
 
 namespace ToDos {
 
+    interface ToDo {
+        id: string;
+        text: string;
+        tags: string[]; // actuall dates
+        due: string; // actuall date
+        done: string; // actuall date
+
+    }
+
     class ListController {
-        public todos: any [];
+        public todos: ToDo[];
 
-        constructor(private $http: angular.IHttpBackendService) {
+        constructor(private todoService: ToDoService,
+                    private $window: angular.IWindowService) {
 
-            $http.get("/api/todos")
-                .then((response) => {
-                    this.todos = response.data;
+            todoService.list()
+                .then((todos) => {
+                    this.todos = todos;
                 })
-
+                .catch((response) => {
+                    $window.console.log(response);
+                });
         }
 
     }

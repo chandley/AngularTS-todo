@@ -53,22 +53,57 @@ var ToDos;
  */
 var ToDos;
 (function (ToDos) {
-    ToDos.todosModule = angular.module("todos.main", []);
+    var deps = [
+        "ui.router"
+    ];
+    ToDos.todosModule = angular.module("todos.main", deps);
+    ToDos.todosModule.config(function ($stateProvider) {
+        $stateProvider.state({
+            name: "root.todos",
+            url: "todos",
+            templateUrl: "/todos/list.html",
+            controller: "ListController",
+            controllerAs: "listCtrl"
+        });
+    });
 })(ToDos || (ToDos = {}));
 
 /// <reference path="module.ts" />
 var ToDos;
 (function (ToDos) {
     var ListController = (function () {
-        function ListController($http) {
+        function ListController(todoService, $window) {
             var _this = this;
-            this.$http = $http;
-            $http.get("/api/todos")
-                .then(function (response) {
-                _this.todos = response.data;
+            this.todoService = todoService;
+            this.$window = $window;
+            todoService.list()
+                .then(function (todos) {
+                _this.todos = todos;
+            })
+                .catch(function (response) {
+                $window.console.log(response);
             });
         }
         return ListController;
     })();
     ToDos.todosModule.controller("ListController", ListController);
+})(ToDos || (ToDos = {}));
+
+///reference path="module.ts" />
+var ToDos;
+(function (ToDos) {
+    var ToDoService = (function () {
+        function ToDoService($http) {
+            this.$http = $http;
+        }
+        ToDoService.prototype.list = function () {
+            return this.$http.get("/api/todos").
+                then(function (response) {
+                return response.data;
+            });
+        };
+        return ToDoService;
+    })();
+    ToDos.ToDoService = ToDoService;
+    ToDos.todosModule.service("todoService", ToDoService);
 })(ToDos || (ToDos = {}));
