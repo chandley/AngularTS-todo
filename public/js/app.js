@@ -103,24 +103,30 @@ var ToDos;
 (function (ToDos) {
     var ListController = (function () {
         function ListController(todoService, $window, $modal) {
-            var _this = this;
             this.todoService = todoService;
             this.$window = $window;
             this.$modal = $modal;
-            todoService.list()
+            this.load();
+        }
+        ListController.prototype.load = function () {
+            var _this = this;
+            this.todoService.list()
                 .then(function (todos) {
                 _this.todos = todos;
             })
                 .catch(function (response) {
-                $window.console.log(response);
+                _this.$window.console.log(response);
             });
-        }
+        };
         ListController.prototype.addNew = function () {
+            var _this = this;
             this.$modal.open({
                 controller: "AddNewController",
                 controllerAs: "addNewCtrl",
                 templateUrl: "/todos/addnew.html",
                 backdrop: "static" // prevents clickaway from closing
+            }).result.then(function () {
+                _this.load();
             });
         };
         return ListController;

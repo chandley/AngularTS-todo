@@ -17,24 +17,32 @@ namespace ToDos {
         constructor(private todoService:ToDoService,
                     private $window:angular.IWindowService,
                     private $modal:ModalService) {
-
-            todoService.list()
-                .then((todos) => {
-                    this.todos = todos;
-                })
-                .catch((response) => {
-                    $window.console.log(response);
-                });
+            this.load();
         }
 
 
+        private
+            load()
+            {
+                this.todoService.list()
+                    .then((todos) => {
+                        this.todos = todos;
+                    })
+                    .catch((response) => {
+                        this.$window.console.log(response);
+                    });
+            }
         public addNew() {
             this.$modal.open({
                 controller: "AddNewController",
                 controllerAs: "addNewCtrl",
                 templateUrl: "/todos/addnew.html",
                 backdrop: "static" // prevents clickaway from closing
-            });
+            }).result.then(() => {
+                    this.load();
+
+
+                });
         }
     }
 
