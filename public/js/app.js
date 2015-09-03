@@ -5,7 +5,8 @@ var ToDos;
 (function (ToDos) {
     var deps = [
         "ui.router",
-        "todos.root"
+        "todos.root",
+        "todos.main"
     ];
     ToDos.appModule = angular.module("todos", deps);
     ToDos.appModule.config(function ($stateProvider, $urlRouterProvider) {
@@ -45,4 +46,29 @@ var ToDos;
         return RootController;
     })();
     ToDos.rootModule.controller("RootController", RootController);
+})(ToDos || (ToDos = {}));
+
+/**
+ * Created by chrisha on 03/09/15.
+ */
+var ToDos;
+(function (ToDos) {
+    ToDos.todosModule = angular.module("todos.main", []);
+})(ToDos || (ToDos = {}));
+
+/// <reference path="module.ts" />
+var ToDos;
+(function (ToDos) {
+    var ListController = (function () {
+        function ListController($http) {
+            var _this = this;
+            this.$http = $http;
+            $http.get("/api/todos")
+                .then(function (response) {
+                _this.todos = response.data;
+            });
+        }
+        return ListController;
+    })();
+    ToDos.todosModule.controller("ListController", ListController);
 })(ToDos || (ToDos = {}));
