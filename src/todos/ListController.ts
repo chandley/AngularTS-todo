@@ -12,10 +12,11 @@ namespace ToDos {
     }
 
     class ListController {
-        public todos: ToDo[];
+        public todos:ToDo[];
 
-        constructor(private todoService: ToDoService,
-                    private $window: angular.IWindowService) {
+        constructor(private todoService:ToDoService,
+                    private $window:angular.IWindowService,
+                    private $modal:ModalService) {
 
             todoService.list()
                 .then((todos) => {
@@ -26,8 +27,19 @@ namespace ToDos {
                 });
         }
 
+
+        public addNew() {
+            this.$modal.open({
+                controller: "AddNewController",
+                controllerAs: "addNewCtrl",
+                templateUrl: "/todos/addnew.html",
+                backdrop: "static" // prevents clickaway from closing
+            });
+        }
     }
 
     todosModule.controller("ListController", ListController);
+
+
 
 }

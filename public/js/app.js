@@ -58,7 +58,8 @@ var ToDos;
 var ToDos;
 (function (ToDos) {
     var deps = [
-        "ui.router"
+        "ui.router",
+        "ui.bootstrap"
     ];
     ToDos.todosModule = angular.module("todos.main", deps);
     ToDos.todosModule.config(function ($stateProvider) {
@@ -75,11 +76,23 @@ var ToDos;
 /// <reference path="module.ts" />
 var ToDos;
 (function (ToDos) {
+    var AddNewController = (function () {
+        function AddNewController() {
+        }
+        return AddNewController;
+    })();
+    ToDos.todosModule.controller("AddNewController", AddNewController);
+})(ToDos || (ToDos = {}));
+
+/// <reference path="module.ts" />
+var ToDos;
+(function (ToDos) {
     var ListController = (function () {
-        function ListController(todoService, $window) {
+        function ListController(todoService, $window, $modal) {
             var _this = this;
             this.todoService = todoService;
             this.$window = $window;
+            this.$modal = $modal;
             todoService.list()
                 .then(function (todos) {
                 _this.todos = todos;
@@ -88,6 +101,14 @@ var ToDos;
                 $window.console.log(response);
             });
         }
+        ListController.prototype.addNew = function () {
+            this.$modal.open({
+                controller: "AddNewController",
+                controllerAs: "addNewCtrl",
+                templateUrl: "/todos/addnew.html",
+                backdrop: "static" // prevents clickaway from closing
+            });
+        };
         return ListController;
     })();
     ToDos.todosModule.controller("ListController", ListController);

@@ -4,6 +4,8 @@
 
 namespace ToDos {
 
+    export type ModalService = angular.ui.bootstrap.IModalService;
+
     var deps = [
         "ui.router",
         "todos.root",

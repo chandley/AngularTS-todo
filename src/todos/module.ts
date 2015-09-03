@@ -5,7 +5,8 @@
 namespace ToDos {
 
     var deps = [
-        "ui.router"
+        "ui.router",
+        "ui.bootstrap"
     ]
 
     export var todosModule = angular.module("todos.main", deps);
