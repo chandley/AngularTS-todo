@@ -4,7 +4,11 @@
 
 namespace ToDos {
 
-    export var appModule = angular.module("todos", ["ui.router"]);
+    var deps = [
+        "ui.router",
+        "todos.root"
+    ]
+    export var appModule = angular.module("todos", deps);
 
     appModule.config(
         ($stateProvider: angular.ui.IStateProvider,
@@ -14,8 +18,12 @@ namespace ToDos {
             .state({
                 name: "root",
                 url: "/",
-                templateUrl: "root/root.html"
+                templateUrl: "root/root.html",
+                controller: "RootController",
+                controllerAs: "rootCtrl"
             })
+
+            $urlRouterProvider.otherwise("/");
 
     })
 
