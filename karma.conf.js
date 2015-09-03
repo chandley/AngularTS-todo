@@ -20,6 +20,7 @@ module.exports = function(config) {
       'public/vendor/js/ui-bootstrap-tpls.js',
       'public/vendor/js/select.js',
       'public/vendor/js/angular-mocks.js',
+      'public/vendor/js/moment.js',
       'public/js/app.js',
       'test/**/*Spec.js'
     ],

@@ -1,11 +1,19 @@
-<div class="modal-header">
-    Add New ToDo
-    <button class="close" ng-click="$dismiss()">&times;</button>
-</div>
-<div class="modal-body">
-    ???
-</div>
-<div class="modal-footer">
-    <button class="btn btn-default">Cancel</button>
-    <button class="btn btn-primary">OK</button>
-</div>
+<form ng-submit="addNewCtrl.save()">
+    <div class="modal-header">
+        Add New ToDo
+        <button class="close" ng-click="$dismiss()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="text">Text*</label>
+            <input type="text" id="text" name="text"
+                   class="form-control"
+                   ng-model="addNewCtrl.text"
+                   placeholder="Enter a description...">
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-default" ng-click="$dismiss()">Cancel</button>
+        <button type="submit" class="btn btn-primary">OK</button>
+    </div>
+</form>

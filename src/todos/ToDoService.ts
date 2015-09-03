@@ -16,6 +16,10 @@ namespace ToDos {
                 });
 
         }
+        public add(todo: ToDo) {
+            return this.$http.post("/api/todos", todo)
+            .then((response) => response.data)
+        }
     }
 
     todosModule.service("todoService", ToDoService);

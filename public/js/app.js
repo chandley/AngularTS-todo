@@ -77,8 +77,22 @@ var ToDos;
 var ToDos;
 (function (ToDos) {
     var AddNewController = (function () {
-        function AddNewController() {
+        function AddNewController(todoService, $modalInstance) {
+            this.todoService = todoService;
+            this.$modalInstance = $modalInstance;
         }
+        AddNewController.prototype.save = function () {
+            var _this = this;
+            var todo = {
+                id: Date.now().toString(),
+                text: this.text,
+                created: moment().toISOString()
+            };
+            this.todoService.add(todo)
+                .then(function () {
+                _this.$modalInstance.close();
+            });
+        };
         return AddNewController;
     })();
     ToDos.todosModule.controller("AddNewController", AddNewController);
@@ -126,6 +140,10 @@ var ToDos;
                 then(function (response) {
                 return response.data;
             });
+        };
+        ToDoService.prototype.add = function (todo) {
+            return this.$http.post("/api/todos", todo)
+                .then(function (response) { return response.data; });
         };
         return ToDoService;
     })();
