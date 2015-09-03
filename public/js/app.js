@@ -42,7 +42,11 @@ var ToDos;
                 "Welcome",
                 "New version is out"
             ];
+            this.showMessages = true;
         }
+        RootController.prototype.toggleMessages = function () {
+            this.showMessages = !this.showMessages;
+        };
         return RootController;
     })();
     ToDos.rootModule.controller("RootController", RootController);

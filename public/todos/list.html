@@ -7,7 +7,10 @@
 
     <div class="row" ng-repeat="todo in listCtrl.todos">
         <div class="col-md-8">
-            <p>{{todo.text}}</p>
+            <h4>{{todo.text}}</h4>
+            <span class="small">Created: {{todo.created}}</span>
+            <br>
+            <span class="small">Due: {{todo.due}}</span>
         </div>
     </div>
 

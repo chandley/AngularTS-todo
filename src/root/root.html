@@ -7,13 +7,17 @@
         <div class="col-md-6">
             <div ui-view>
                 <p>Welcome to the ToDos application.</p>
-                <p><a href="#/todos">View your ToDo list....</a></p>
+                <p><a class="btn btn-primary btn-small" ui-sref="root.todos">View your ToDo list....</a></p>
             </div>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-6" ng-if="rootCtrl.showMessages">
             <div class="panel panel-info">
-                <div class="panel-heading">Messages</div>
+                <div class="panel-heading">
+                    Messages
+                    <button class="close"
+                            ng-click="rootCtrl.toggleMessages()">&times;</button>
+                </div>
                 <div class="panel-body">
                     <ul>
                         <li ng-repeat="message in rootCtrl.messages">

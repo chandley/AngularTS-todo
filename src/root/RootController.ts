@@ -10,6 +10,11 @@ namespace ToDos {
             "Welcome",
             "New version is out"
         ];
+
+        public showMessages = true;
+        public toggleMessages() {
+            this.showMessages = !this.showMessages;
+        }
     }
 
     rootModule.controller("RootController", RootController)
