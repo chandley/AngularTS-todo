@@ -9,7 +9,8 @@ namespace ToDos {
     var deps = [
         "ui.router",
         "todos.root",
-        "todos.main"
+        "todos.main",
+        "todos.filters"
     ]
     export var appModule = angular.module("todos", deps);
 
