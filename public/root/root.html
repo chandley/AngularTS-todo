@@ -4,14 +4,15 @@
     <div class="row">
 
         <!-- ... and columns, which are sized as a ratio of 12 -->
-        <div class="col-md-6">
+        <div ng-class="{'col-md-8': rootCtrl.showMessages,
+                       'col-md-12': !rootCtrl.showMessages }">
             <div ui-view>
                 <p>Welcome to the ToDos application.</p>
                 <p><a class="btn btn-primary btn-small" ui-sref="root.todos">View your ToDo list....</a></p>
             </div>
         </div>
 
-        <div class="col-md-6" ng-if="rootCtrl.showMessages">
+        <div class="col-md-4" ng-if="rootCtrl.showMessages">
             <div class="panel panel-info">
                 <div class="panel-heading">
                     Messages
