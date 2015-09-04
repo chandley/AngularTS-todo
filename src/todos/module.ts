@@ -5,7 +5,8 @@ namespace ToDos {
         "ngMessages",
         "ui.router",
         "ui.bootstrap",
-        "todos.filters"
+        "todos.filters",
+        "todos.directives"
     ]
 
     export var todosModule = angular.module("todos.main", deps);

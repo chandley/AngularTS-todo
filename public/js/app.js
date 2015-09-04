@@ -25,6 +25,28 @@ var ToDos;
 
 var ToDos;
 (function (ToDos) {
+    ToDos.directivesModule = angular.module("todos.directives", []);
+})(ToDos || (ToDos = {}));
+
+/// <reference path="module.ts" />
+var ToDos;
+(function (ToDos) {
+    function momentInput() {
+        return {
+            restrict: "A",
+            require: "ngModel",
+            link: linkMomentInput
+        };
+    }
+    // SEAC
+    function linkMomentInput(scope, elem, attrs, ctrl) {
+        ctrl.$parsers.push(function (val) { return moment(val); });
+    }
+    ToDos.directivesModule.directive("momentInput", momentInput);
+})(ToDos || (ToDos = {}));
+
+var ToDos;
+(function (ToDos) {
     ToDos.filterModule = angular.module("todos.filters", []);
 })(ToDos || (ToDos = {}));
 
@@ -82,7 +104,8 @@ var ToDos;
         "ngMessages",
         "ui.router",
         "ui.bootstrap",
-        "todos.filters"
+        "todos.filters",
+        "todos.directives"
     ];
     ToDos.todosModule = angular.module("todos.main", deps);
     ToDos.todosModule.config(function ($stateProvider) {
