@@ -16,6 +16,13 @@
                 <div ng-messages-include="/todos/input-errors.html"></div>
             </div>
 
+            <div class="form-group">
+                <label>Due:</label>
+                <datepicker
+                       ng-model="itemCtrl.todo.due"
+                       name="due">
+            </div>
+
             <div class="text-center">
                 <button type="submit" class=btn "btn-success">Save</button>
             </div>
