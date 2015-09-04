@@ -12,8 +12,18 @@ namespace ToDos {
         ];
 
         public showMessages = true;
+
+        constructor(private $state: angular.ui.IStateService) {
+
+        }
         public toggleMessages() {
             this.showMessages = !this.showMessages;
+        }
+
+        public stateIs(stateName: string) {
+
+            return this.$state.is(stateName);
+
         }
     }
 

@@ -57,7 +57,8 @@ var ToDos;
 var ToDos;
 (function (ToDos) {
     var RootController = (function () {
-        function RootController() {
+        function RootController($state) {
+            this.$state = $state;
             this.messages = [
                 "Welcome",
                 "New version is out"
@@ -67,14 +68,14 @@ var ToDos;
         RootController.prototype.toggleMessages = function () {
             this.showMessages = !this.showMessages;
         };
+        RootController.prototype.stateIs = function (stateName) {
+            return this.$state.is(stateName);
+        };
         return RootController;
     })();
     ToDos.rootModule.controller("RootController", RootController);
 })(ToDos || (ToDos = {}));
 
-/**
- * Created by chrisha on 03/09/15.
- */
 var ToDos;
 (function (ToDos) {
     var deps = [
@@ -83,12 +84,20 @@ var ToDos;
     ];
     ToDos.todosModule = angular.module("todos.main", deps);
     ToDos.todosModule.config(function ($stateProvider) {
-        $stateProvider.state({
+        $stateProvider
+            .state({
             name: "root.todos",
             url: "todos",
             templateUrl: "/todos/list.html",
             controller: "ListController",
             controllerAs: "listCtrl"
+        })
+            .state({
+            name: "root.todos.item",
+            url: "/:id",
+            templateUrl: "/todos/item.html",
+            controller: "ItemController",
+            controllerAs: "itemCtrl"
         });
     });
 })(ToDos || (ToDos = {}));
@@ -175,4 +184,15 @@ var ToDos;
     })();
     ToDos.ToDoService = ToDoService;
     ToDos.todosModule.service("todoService", ToDoService);
+})(ToDos || (ToDos = {}));
+
+/// <reference path="module.ts" />
+var ToDos;
+(function (ToDos) {
+    var ItemController = (function () {
+        function ItemController() {
+        }
+        return ItemController;
+    })();
+    ToDos.todosModule.controller("ItemsController", ItemController);
 })(ToDos || (ToDos = {}));
