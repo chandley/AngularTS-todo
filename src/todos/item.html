@@ -18,9 +18,24 @@
 
             <div class="form-group">
                 <label>Due:</label>
-                <datepicker
-                       ng-model="itemCtrl.todo.due"
-                       name="due">
+                <p class="input-group">
+                    <input type="text" class="form-control"
+                           datepicker-popup="dd MMM yyyy"
+                           ng-model="itemCtrl.todo.due"
+                           is-open="duePickerOpen"
+                           min-date="minDate"
+                           max-date="'2020-06-22'"
+                           datepicker-options="dateOptions"
+                           date-disabled="disabled(date, mode)"
+                           ng-required="true"
+                           close-text="Close" />
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default"
+                            ng-click="duePickerOpen = !duePickerOpen">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                    </button>
+                  </span>
+                </p>
             </div>
 
             <div class="text-center">
