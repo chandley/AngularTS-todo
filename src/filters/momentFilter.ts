@@ -2,14 +2,14 @@
 
 namespace ToDos {
 
-    function momentFilter(val: any) {
+    function momentFilter(val: any, format?: string) {
         if (typeof val !== "string") return val;
 
         var m = moment(val);
 
         if(!m.isValid()) return val;
 
-        return m.format("DD MM YYYY");
+        return m.format(format || "DD MM YYYY");
 
     }
 

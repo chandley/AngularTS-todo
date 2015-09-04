@@ -31,13 +31,13 @@ var ToDos;
 /// <reference path="module.ts" />
 var ToDos;
 (function (ToDos) {
-    function momentFilter(val) {
+    function momentFilter(val, format) {
         if (typeof val !== "string")
             return val;
         var m = moment(val);
         if (!m.isValid())
             return val;
-        return m.format("DD MM YYYY");
+        return m.format(format || "DD MM YYYY");
     }
     ToDos.filterModule.filter("moment", function () { return momentFilter; });
 })(ToDos || (ToDos = {}));
