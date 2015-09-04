@@ -203,6 +203,10 @@ var ToDos;
                 _this.todo = todo;
             });
         }
+        ItemController.prototype.save = function () {
+            this.todo.due = moment(this.todo.due).toISOString();
+            debugger;
+        };
         return ItemController;
     })();
     ToDos.todosModule.controller("ItemController", ItemController);

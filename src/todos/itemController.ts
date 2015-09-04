@@ -12,6 +12,12 @@ namespace ToDos {
                     this.todo = todo;
                 });
         }
+
+        public save() {
+
+            this.todo.due = moment(this.todo.due).toISOString();
+            debugger;
+        }
     }
     todosModule.controller("ItemController", ItemController);
 }
