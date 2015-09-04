@@ -16,6 +16,7 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       'public/vendor/js/angular.js',
+      'public/vendor/js/angular-messages.js',
       'public/vendor/js/angular-ui-router.js',
       'public/vendor/js/ui-bootstrap-tpls.js',
       'public/vendor/js/select.js',

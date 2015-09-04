@@ -79,8 +79,10 @@ var ToDos;
 var ToDos;
 (function (ToDos) {
     var deps = [
+        "ngMessages",
         "ui.router",
-        "ui.bootstrap"
+        "ui.bootstrap",
+        "todos.filters"
     ];
     ToDos.todosModule = angular.module("todos.main", deps);
     ToDos.todosModule.config(function ($stateProvider) {
@@ -163,7 +165,7 @@ var ToDos;
     ToDos.todosModule.controller("ListController", ListController);
 })(ToDos || (ToDos = {}));
 
-///reference path="module.ts" />
+/// <reference path="module.ts" />
 var ToDos;
 (function (ToDos) {
     var ToDoService = (function () {
@@ -171,13 +173,17 @@ var ToDos;
             this.$http = $http;
         }
         ToDoService.prototype.list = function () {
-            return this.$http.get("/api/todos").
-                then(function (response) {
+            return this.$http.get("/api/todos", { cache: false })
+                .then(function (response) {
                 return response.data;
             });
         };
         ToDoService.prototype.add = function (todo) {
             return this.$http.post("/api/todos", todo)
+                .then(function (response) { return response.data; });
+        };
+        ToDoService.prototype.get = function (id) {
+            return this.$http.get("/api/todos/" + id)
                 .then(function (response) { return response.data; });
         };
         return ToDoService;
@@ -190,9 +196,14 @@ var ToDos;
 var ToDos;
 (function (ToDos) {
     var ItemController = (function () {
-        function ItemController() {
+        function ItemController($stateParams, todoService) {
+            var _this = this;
+            todoService.get($stateParams.id)
+                .then(function (todo) {
+                _this.todo = todo;
+            });
         }
         return ItemController;
     })();
-    ToDos.todosModule.controller("ItemsController", ItemController);
+    ToDos.todosModule.controller("ItemController", ItemController);
 })(ToDos || (ToDos = {}));
